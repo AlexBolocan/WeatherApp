@@ -1,0 +1,63 @@
+.bodyStyle {
+  background-color: rgba(165, 210, 247, 0.897);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  size: auto;
+}
+
+.inputStyle {
+  background-color: rgb(233, 245, 252);
+  margin: 5px 20px;
+  border-radius: 5px;
+  max-width: 60vw;
+  height: auto;
+  text-align: center;
+  padding: 20px 20px;
+}
+.btnStyle {
+  color: rgb(234, 241, 247);
+  background-color: rgb(113, 161, 223);
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  margin: 5px 5px;
+}
+.inputBtn {
+  align-items: flex-start;
+  width: 50%;
+  height: 25px;
+  margin: 1px 5px;
+}
+.currentWeather{
+  width: auto;
+  text-align: start;
+  font-size: 15px;
+}
+.weatherStyle {
+  background-color: rgb(233, 245, 252);
+  margin: 5px 20px;
+  border-radius: 5px;
+  max-width: 60vw;
+  height: auto;
+  text-align: center;
+  padding: 20px 20px;
+  font-size: 15px;
+}
+.forecastStyle{
+  display: grid;
+  grid-template-columns: 5;
+  grid-template-rows: auto;
+  background-color: rgb(233, 245, 252);
+  margin: 5px 20px;
+  border-radius: 5px;
+  max-width: 60vw;
+  height: auto;
+  text-align: center;
+  padding: 20px 20px;
+  font-size: 15px;
+}  
