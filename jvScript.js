@@ -18,6 +18,7 @@ async function showWeather() {
   let dataWeatherCity = document.querySelector("#idShowWeather");
   let strWeatherCity = "";
   strWeatherCity += `
+  <div>
     <div class="currentWeather "> <img src="${URL_WEATHER_ICON_PREFIX}${wheatherElem.elem.weather[0].icon}.png" alt=""> </div>
     <div class="currentWeather "> Descriere: ${wheatherElem.elem.weather[0].description}  </div>
     <div class="currentWeather "> Temperatura este: ${wheatherElem.elem.main.temp} &#176C  </div>
@@ -25,6 +26,10 @@ async function showWeather() {
     <div class="currentWeather "> Umiditatea este: ${wheatherElem.elem.main.humidity} %  </div>
     <div class="currentWeather "> Maxima zilei este: ${wheatherElem.elem.main.temp_max} &#176C  </div>
     <div class="currentWeather "> Minima zilei este: ${wheatherElem.elem.main.temp_min} &#176C  </div>
+  </div>
+  <div>
+  <iframe src="" frameborder="0"></iframe>
+
 `;
   dataWeatherCity.innerHTML = strWeatherCity;
 }
@@ -36,8 +41,13 @@ async function showForecast() {
   let resCurrentWeather = await currentWeather.json();
   wheatherElem.elem = resCurrentWeather.list;
   let dataWeatherCity = document.querySelector("#idShowForecast");
-  let strWeatherCity = "";
-  
+  let strWeatherCity = `
+    <div class="currentWeather forecastTitle">Prognoza meteo</div>
+    `;
+  let classGrid = "item";
+  let classGridIdx = 0;
+  let incrIndexGrid = false;
+
   for (let index = 0; index < wheatherElem.elem.length; index++) {
     let dataDayHour = wheatherElem.elem[index].dt_txt;
     let strDay = "";
@@ -51,23 +61,28 @@ async function showForecast() {
     }
     console.log(strDay);
     console.log(hourDay);
-    if (hourDay === " 00:00:00") {
+    if (hourDay === " 00:00:00" || incrIndexGrid === false) {
+      incrIndexGrid = true;
+      classGridIdx++;
+      classGrid = "item" + classGridIdx + "";
       strWeatherCity += `
-        <div>  
-          <br></br>        
-          <div class="currentWeather"> Ziua: ${strDay} </div>
+        <div class="currentWeather ${classGrid} startGrid">  
+          <br>
+          <div > Ziua: ${strDay} </div>
+          <br>
         </div>`;
     }
 
     console.log(strWeatherCity);
     strWeatherCity += `
-      <div>  
-        <div class="currentWeather "> <img src="${URL_WEATHER_ICON_PREFIX}${wheatherElem.elem[index].weather[0].icon}.png" alt=""> </div>
-        <div class="currentWeather "> Ora : ${hourDay} </div>
-        <div class="currentWeather "> Temperatura : ${wheatherElem.elem[index].main.temp} &#176C  </div>
-        <div class="currentWeather "> Descriere: ${wheatherElem.elem[index].weather[0].description}  </div>
+      <div class="currentWeather ${classGrid}">  
+        <div > <img src="${URL_WEATHER_ICON_PREFIX}${wheatherElem.elem[index].weather[0].icon}.png" alt=""> </div>
+        <div > Ora : ${hourDay} </div>
+        <div > Temperatura : ${wheatherElem.elem[index].main.temp} &#176C  </div>
+        <div > Descriere: ${wheatherElem.elem[index].weather[0].description}  </div>
       </div>`;
   }
-  console.log(strWeatherCity);
+  //console.log(strWeatherCity);
   dataWeatherCity.innerHTML = strWeatherCity;
 }
+//maps
